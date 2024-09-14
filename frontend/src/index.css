@@ -1,0 +1,151 @@
+/* styles.css */
+
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* * {
+    background-color: #2D3741;
+    outline: none;
+} */
+/* styles.css */
+:root {
+    --primary-color: #2D3741;
+    --secondary-color: #384450;
+    --background-color-dark: #727262;
+    --background-color-light: #2D3741;
+    --text-color-dark: blue;
+    --text-color-light: white;
+    --text-color: white;
+    --green-color: #52D3B3;
+}
+
+/* ToggleButton.css */
+.toggle-button {
+    position: absolute;
+    background-color: #6c757d;
+    border: none;
+    color: #333;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s ease, width 2s ease;
+    outline: none;
+    width: 50px;
+}
+
+.toggle-button:focus {
+    outline: none;
+
+}
+
+.toggle-button span {
+    margin-left: 5px;
+}
+
+.toggle-button:hover {
+    background-color: #595F60;
+    width: fit-content;
+    transform: scale(1.2);
+    transition: all 4s ease;
+}
+
+.toggle-button.dark-mode {
+    background-color: #6666ff;
+    color: #fff;
+}
+
+.toggle-button.dark-mode:hover {
+    background-color: #9999ff;
+}
+
+.toggle-button.dark-mode span {
+    margin-right: 5px;
+}
+
+
+
+.app.light {
+    background-color: var(--background-color-light);
+    background: var(--background-color-light);
+    color: var(--text-color-light);
+    height: 150vh;
+}
+
+.app.dark {
+    background-color: var(--background-color-dark);
+    background: var(--background-color-dark);
+    color: var(--text-color-dark);
+    height: 150-vh;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: var(--background-color-light);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.secondary-button {
+    background-color: var(--secondary-color);
+    color: var(--background-color-light);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+input:focus {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+textarea:focus {
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+@font-face {
+    font-family: 'Core Rhino';
+    src: url('../src/assets/fonts/CoreRhino65Bold.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Core Rhino Medium';
+    src: url('../src/assets/fonts/CoreRhino55Medium.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Core Rhino Light';
+    src: url('../src/assets/fonts/CoreRhino35Light.ttf') format('opentype');
+}
+
+
+
+.bg {
+    background-color: rgba(45, 55, 65, 1)
+}
+
+
+/* Scrollbar  */
+html::-webkit-scrollbar {
+    width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+    background-color: blue;
+}
+
+html::-webkit-slider-thumb {
+    background-color: blue;
+    border-radius: 15px;
+}

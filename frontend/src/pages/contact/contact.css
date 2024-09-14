@@ -1,0 +1,36 @@
+.font-CoreRhino65bold {
+  font-family: 'Core Rhino';
+  font-weight: bold;
+}
+
+.font-CoreRhinoMedium {
+  font-family: 'Core Rhino Medium', sans-serif;
+}
+
+.font-CoreRhinoLight {
+  font-family: 'Core Rhino Light', sans-serif;
+}
+
+textarea.no-resize {
+  resize: none;
+}
+
+.border-focus {
+  border: solid 2px rgb(87 100 116);
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.bg {
+  background-color: #2D3741;
+}
+
+.PhoneInput {
+  background-color: #2D3741;
+}
+
+.phone-input-container * {
+  background-color: #2D3741;
+  outline: none;
+}
+

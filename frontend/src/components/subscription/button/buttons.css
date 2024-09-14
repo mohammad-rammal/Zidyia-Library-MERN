@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'Core Rhino 35 Light';
+    src: url('../../../assets/fonts/CoreRhino35Light.ttf') format('truetype');
+}
+
+.Buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 227px;
+    height: 41px;
+    margin: 0 auto;
+}
+
+.subscription-button {
+    position: relative;
+    width: 108px;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid #5DD3B3;
+    border-radius: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscription-button-text {
+    font-family: 'Core Rhino 65 Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+
+.monthly {}
+
+.annually {
+    background-color: transparent;
+    border: 1px solid #5DD3B3;
+    color: #5DD3B3;
+}
+
+/* buttons.css */
+
+.Buttons {
+    display: flex;
+}
+
+.subscription-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.subscription-button.active {
+    background-color: #5DD3B3;
+}
+
+.subscription-button.monthly {
+    margin-right: 10px;
+}
+

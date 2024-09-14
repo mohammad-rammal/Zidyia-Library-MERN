@@ -1,0 +1,26 @@
+.font-CoreRhino65bold {
+    font-family: 'Core Rhino'; 
+    font-weight: bold; 
+  }
+
+  .font-CoreRhinoMedium {
+    font-family: 'Core Rhino Medium', sans-serif;
+}
+
+.font-CoreRhinoLight {
+    font-family: 'Core Rhino Light', sans-serif;
+}
+
+.custom-checkbox {
+  border: 1px solid #fff;
+  background-image: linear-gradient(to right, #576371, #2C3239);
+}
+
+
+.icon {
+  transition: transform 0.3s ease; 
+}
+
+.expanded .icon {
+  transform: rotate(180deg); 
+}

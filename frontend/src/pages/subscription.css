@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'Core Rhino 65 Bold';
+    src: url('../assets/fonts/CoreRhino65Bold.ttf') format('truetype');
+}
+
+.subscription {
+    /* background-color: rgba(45, 55, 65, 1) */
+}
+
+.subscription-text {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-family: 'Core Rhino 65 Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+
+    /* color: #FFFFFF; */
+
+
+}
+
+@media screen and (max-width: 570px) {
+
+    .subscription-text {
+        font-size: 25px;
+    }
+}

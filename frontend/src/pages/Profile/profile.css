@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Core Rhino 65 Bold';
+    src: url('../../assets/fonts/CoreRhino65Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Core Rhino 35 Light';
+    src: url('../../assets/fonts/CoreRhino35Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Core Rhino 35 Light';
+    src: url('../../assets/fonts/CoreRhino45Regular.ttf') format('truetype');
+}
+
+.profile-title{
+font-family: 'Core Rhino 45 Regular';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 35px;
+color: var(--green-color);
+margin: 80px auto 0 20%;
+}
+
+.profile-rectangle{
+background-color: var(--secondary-color);
+width: 60%;
+height: auto;
+margin: 0 auto;
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+box-shadow: 0px 4px 8px rgba(93, 211, 179, 0.2);
+}
+
+.profile-image{
+width: 150px;
+height: 150px;
+border-radius: 50%;
+position: relative;
+margin: 10px auto;
+}
+
+.profile-add-photo{
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background-color: #D9D9D9;
+position: absolute;
+right: 0;
+bottom: 0;
+cursor: pointer;
+}
+
+.profile-add-photo-button{
+font-size: 30px;
+position: absolute;
+color: #384450;
+right: 10px;
+bottom: 10px;
+cursor: pointer;
+}
+
+.profile-text{
+font-family: 'Core Rhino 45 Regular';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 35px;
+color: white;
+margin: 20px auto 0;
+}
+
+.profile-labels{
+font-family: 'Core Rhino 45 Regular';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 35px;
+color: white;
+margin: 20px auto 10px 30px;
+}
+
+.profile-container{
+margin: 0 auto;
+width: 95%;
+border: 1px solid #576371;
+border-radius: 10px;
+}
+
+.profile-input{
+height: 40px;
+}
+
+.profile-input:focus{
+border: 1px solid var(--green-color);
+border-radius: 10px;
+}
+
+.profile-container2 {
+margin: 20px auto;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.profile-save-button {
+width: 50%;
+padding: 10px 20px;
+background-color: var(--green-color);
+text-align: center;
+cursor: pointer;
+font-weight: normal;
+font-size: 20px;
+}

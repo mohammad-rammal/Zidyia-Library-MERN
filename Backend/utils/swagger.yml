@@ -1,0 +1,1001 @@
+openapi: 3.0.0
+info:
+  title: Zediya Library API
+  description: API for Zediya Library Backend.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUserInput"
+      responses:
+        "201":
+          description: User registered successfully
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /auth/login:
+    post:
+      summary: Login with existing user credentials
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginUserInput"
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginUserResponse"
+        "400":
+          description: Invalid email or password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /auth/{userId}/verify/{token}:
+    get:
+      summary: Verify user account using verification token
+      tags:
+        - Authentication
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: ID of the user to verify
+          schema:
+            type: string
+        - name: token
+          in: path
+          required: true
+          description: Verification token
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Account successfully verified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "400":
+          description: Invalid link
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /users/profile:
+    get:
+      summary: Get all users' profiles
+      tags:
+        - User Profiles
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserProfile"
+  /users/profile/{id}:
+    get:
+      summary: Get user profile by ID
+      tags:
+        - User Profiles
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the user profile to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update user profile by ID
+      tags:
+        - User Profiles
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the user profile to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserProfileInput"
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete user profile by ID
+      tags:
+        - User Profiles
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the user profile to delete
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /users/profile/profile-photo-upload:
+    post:
+      summary: Upload profile photo
+      tags:
+        - User Profiles
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  profilePhoto:
+                    $ref: "#/components/schemas/Photo"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /users/profile/id-photo-upload:
+    post:
+      summary: Upload ID photo
+      tags:
+        - User Profiles
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  idPhoto:
+                    $ref: "#/components/schemas/Photo"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /users/count:
+    get:
+      summary: Get total number of users
+      tags:
+        - User Profiles
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 10
+  /api/subscriptions:
+    post:
+      summary: Create a new subscription
+      tags:
+        - Subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SubscriptionInput"
+      responses:
+        "201":
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/libraries:
+    post:
+      summary: Create a new library
+      tags:
+        - Libraries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LibraryInput"
+      responses:
+        '201':
+          description: Library created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Library"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/libraries:
+    get:
+      summary: Get all libraries
+      tags:
+        - Libraries
+      responses:
+        '200':
+          description: List of libraries retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Library"
+  /api/libraries/{id}:
+    get:
+      summary: Get a library by ID
+      tags:
+        - Libraries
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the library to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Library retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Library"
+        '404':
+          description: Library not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/requests:
+    post:
+      summary: Create a new request
+      tags:
+        - Requests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestInput"
+      responses:
+        '201':
+          description: Request created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Request"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Library not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    get:
+      summary: Get all requests
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Request'
+  /api/requests/{id}/status:
+    put:
+      summary: Update the status of a request
+      tags:
+        - Requests
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the request to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateRequestStatusInput"
+      responses:
+        '200':
+          description: Request status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Request"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Request not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/userRequests:
+    get:
+      summary: Get all requests for the current user
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Request'
+  /api/requests/approved/count:
+    get:
+      summary: Get the count of approved requests
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 10
+  /api/requests/pending/count:
+    get:
+      summary: Get the count of pending requests
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 5
+  /api/requests/rejected/count:
+    get:
+      summary: Get the count of rejected requests
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 3
+  /api/requests/approved/user/count:
+    get:
+      summary: Get the count of approved requests for the current user
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 7
+  /api/requests/pending/user/count:
+    get:
+      summary: Get the count of pending requests for the current user
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 2
+  /api/requests/rejected/user/count:
+    get:
+      summary: Get the count of rejected requests for the current user
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 1
+  /api/requests/user/count:
+    get:
+      summary: Get the count of requests for the current user
+      tags:
+        - Requests
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 10
+  /api/documents:
+    post:
+      summary: Upload New Document
+      tags:
+        - Documents
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                library:
+                  type: string
+                  description: ID of the library
+      responses:
+        '201':
+          description: Document uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Internal server error
+    get:
+      summary: Get All Documents
+      tags:
+        - Documents
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Document'
+  /api/documents/{id}:
+    get:
+      summary: Get Single Document
+      tags:
+        - Documents
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the document to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Internal server error
+  /api/documents/count:
+    get:
+      summary: Get Document Count
+      tags:
+        - Documents
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: integer
+        '500':
+          description: Internal server error
+  /api/documents/count/{status}:
+    get:
+      summary: Get Count of Documents by Status
+      tags:
+        - Documents
+      parameters:
+        - in: path
+          name: status
+          required: true
+          description: Status of the documents to count
+          schema:
+            type: string
+            enum: ['pending', 'approved', 'rejected']
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    RegisterUserInput:
+      type: object
+      required:
+        - fullName
+        - email
+        - password
+      properties:
+        fullName:
+          type: string
+          minLength: 2
+          maxLength: 200
+        email:
+          type: string
+          format: email
+          minLength: 5
+          maxLength: 100
+        password:
+          type: string
+          minLength: 8
+    LoginUserInput:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 5
+          maxLength: 100
+        password:
+          type: string
+          minLength: 8
+    LoginUserResponse:
+      type: object
+      properties:
+        _id:
+          type: string
+        role:
+          type: string
+        profilePicture:
+          type: object
+          properties:
+            url:
+              type: string
+            publicId:
+              type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        location:
+          type: string
+        bio:
+          type: string
+        token:
+          type: string
+    UserProfile:
+      type: object
+      properties:
+        _id:
+          type: string
+        fullName:
+          type: string
+        studentId:
+          type: string
+        email:
+          type: string
+        profilePicture:
+          type: object
+          properties:
+            url:
+              type: string
+            publicId:
+              type: string
+        bio:
+          type: string
+        location:
+          type: string
+        role:
+          type: string
+        isAccountVerified:
+          type: boolean
+    UpdateUserProfileInput:
+      type: object
+      properties:
+        fullName:
+          type: string
+        password:
+          type: string
+        studentId:
+          type: string
+        bio:
+          type: string
+        location:
+          type: string
+    Photo:
+      type: object
+      properties:
+        url:
+          type: string
+        publicId:
+          type: string
+    SubscriptionInput:
+      type: object
+      properties:
+        organizationName:
+          type: string
+          description: Name of the organization
+        location:
+          type: string
+          description: Location of the organization
+        adminEmail:
+          type: string
+          format: email
+          description: Email of the administrator
+        expiryDate:
+          type: string
+          format: date
+          description: Expiry date of the subscription
+    Subscription:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID of the subscription
+        organizationName:
+          type: string
+          description: Name of the organization
+        location:
+          type: string
+          description: Location of the organization
+        adminEmail:
+          type: string
+          format: email
+          description: Email of the administrator
+        expiryDate:
+          type: string
+          format: date
+          description: Expiry date of the subscription
+        autoGeneratedPassword:
+          type: string
+          description: Auto-generated password
+        isExpired:
+          type: boolean
+          description: Flag indicating if the subscription is expired
+        isFirstLogin:
+          type: boolean
+          description: Flag indicating if it's the first login
+              LibraryInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the library
+        location:
+          type: string
+          description: Location of the library
+        address:
+          type: string
+          description: Address of the library
+        contactPerson:
+          type: string
+          description: Contact person of the library
+        contactEmail:
+          type: string
+          format: email
+          description: Contact email of the library
+        contactPhone:
+          type: string
+          description: Contact phone of the library
+    Library:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID of the library
+        name:
+          type: string
+          description: Name of the library
+        location:
+          type: string
+          description: Location of the library
+        address:
+          type: string
+          description: Address of the library
+        contactPerson:
+          type: string
+          description: Contact person of the library
+        contactEmail:
+          type: string
+          format: email
+          description: Contact email of the library
+        contactPhone:
+          type: string
+          description: Contact phone of the library
+              RequestInput:
+      type: object
+      properties:
+        library:
+          type: string
+          description: ID of the library
+    UpdateRequestStatusInput:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: ["pending", "approved", "rejected"]
+          description: New status of the request
+        adminNotes:
+          type: string
+          description: Optional notes from the admin
+    Request:
+      type: object
+      properties:
+        user:
+          type: string
+          description: ID of the user
+        library:
+          type: string
+          description: ID of the library
+        status:
+          type: string
+          enum: ["pending", "approved", "rejected"]
+          description: Status of the request
+        adminNotes:
+          type: string
+          description: Optional notes from the admin
+              Document:
+      type: object
+      properties:
+        user:
+          type: string
+          description: ID of the user
+        library:
+          type: string
+          description: ID of the library
+        documentUrl:
+          type: object
+          properties:
+            url:
+              type: string
+            publicId:
+              type: string
+          description: URL and public ID of the document
+        status:
+          type: string
+          enum: ['pending', 'approved', 'rejected']
+          description: Status of the document
+        rejectionReason:
+          type: string
+          description: Reason for rejection (if applicable)
+        adminNotes:
+          type: string
+          description: Optional notes from the admin

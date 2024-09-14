@@ -1,0 +1,220 @@
+@font-face {
+    font-family: 'Core Rhino 65 Bold';
+    src: url('../../assets/fonts/CoreRhino65Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Core Rhino 35 Light';
+    src: url('../../assets/fonts/CoreRhino35Light.ttf') format('truetype');
+}
+
+body {
+    background: var(--primary-color);
+}
+
+.about {
+    margin: 50px auto;
+
+}
+
+.rectangle1 {
+
+ 
+
+    margin-left: 20px;
+    width: 99%;
+
+    width: 100%;
+
+    height: 364px;
+    background: var(--secondary-color);
+    position: relative;
+}
+
+.rectangle1-title {
+    position: absolute;
+    width: 182px;
+    height: 35px;
+    left: 10px;
+    top: 50px;
+    font-family: 'Core Rhino 65 Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    color: var(--text-color);
+}
+
+.rectangle1-text {
+    position: absolute;
+    width: 629px;
+    height: 168px;
+    left: 10px;
+    top: 95px;
+    font-family: 'Core Rhino 35 Light';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--text-color);
+}
+
+.rectangle1-image {
+    position: absolute;
+    width: 285px;
+    height: 373px;
+    left: 1098px;
+    top: 55px;
+}
+
+.sign-up {
+    position: absolute;
+    width: 137px;
+    height: 45px;
+    left: 10px;
+    top: 283px;
+    background: var(--green-color);
+    border-radius: 1000px;
+    cursor: pointer;
+}
+
+.sign-up-text {
+    position: absolute;
+    width: 70px;
+    height: 19px;
+    left: 49px;
+    top: 296px;
+    font-family: 'Core Rhino 65 Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.rect-2-and-3 {
+    margin-top: 55px;
+    display: flex;
+}
+
+.rectangle-2 {
+    margin-left: 37px;
+    width: 679px;
+    height: 234px;
+    background: linear-gradient(90deg, #415160 0%, #293440 107.88%);
+    border-radius: 20px;
+    position: relative;
+}
+
+.rectangle-2-title {
+    position: absolute;
+    width: 392px;
+    height: 35px;
+    left: 20px;
+    top: 24px;
+    font-family: 'Core Rhino 65 Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    color: var(--text-color);
+}
+
+.rectangle-2-text {
+    position: absolute;
+    width: 630px;
+    height: 112px;
+    left: 20px;
+    top: 71px;
+    font-family: 'Core Rhino 35 Light';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: var(--text-color);
+}
+
+.rectangle-3 {
+    position: relative;
+    margin-left: 90px;
+    width: 679px;
+    height: 234px;
+    background: var(--secondary-color);
+    border-radius: 20px;
+}
+
+.rectangle-3-text {
+    position: absolute;
+    width: 629px;
+    height: 192px;
+    left: 20px;
+    top: 24px;
+    font-family: 'Core Rhino 35 Light';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--text-color);
+}
+
+.tab {
+    margin-top: 30px;
+    width: 100%;
+    height: 70px;
+    left: 0px;
+    background-color: var(--text-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.feature1 {
+    font-weight: bold;
+    color: black;
+}
+
+
+.rectangle-4 {
+display: flex;
+}
+
+
+.rectangle-4-1 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 74px;
+    margin-left: 57px;
+}
+
+.reactangle-4-title {
+    width: 235px;
+    height: 35px;
+    font-family: 'Core Rhino 65 Bold';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 35px;
+    color: var(--text-color);
+}
+
+.rectangle-4-text {
+    margin-top: 20px;
+    width: 797px;
+    height: 140px;
+    font-family: 'Core Rhino 35 Light';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: var(--text-color);
+}
+
+.reactangle-4-image {
+    margin-top: 64px;
+    margin-left: 145px;
+    width: 483px;
+    height: 238px;
+    border-radius: 10px;
+}
